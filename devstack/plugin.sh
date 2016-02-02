@@ -199,7 +199,7 @@ function _drop_database {
     if is_service_enabled ceilometer-collector ceilometer-api ; then
         if [ "$CEILOMETER_BACKEND" = 'mongodb' ] ; then
             #mongo ceilometer --eval "db.dropDatabase();"
-            ;
+            echo 'Drop Database Ignored';
         elif [ "$CEILOMETER_BACKEND" = 'es' ] ; then
             curl -XDELETE "localhost:9200/events_*"
         fi
