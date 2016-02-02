@@ -18,7 +18,7 @@
 # conductor.send_sensor_data to true in the ironic.conf configuration file
 # for the Ironic conductor service, and also enable the
 # ceilometer-anotification service. If you do this disable the IPMI
-# polling agent:
+# polling agent:l
 #
 # disable_service ceilometer-aipmi
 #
@@ -243,8 +243,8 @@ function _ceilometer_configure_storage_backend {
         iniset $CEILOMETER_CONF database metering_connection $(database_connection_url ceilometer)
         ${TOP_DIR}/pkg/elasticsearch.sh start
     elif [ "$CEILOMETER_BACKEND" = 'mongodb' ] ; then
-        iniset $CEILOMETER_CONF database event_connection mongodb://localhost:27017/ceilometer
-        iniset $CEILOMETER_CONF database metering_connection mongodb://localhost:27017/ceilometer
+        iniset $CEILOMETER_CONF database event_connection mongodb://stack:stack@ds060968.mongolab.com:60968/ceilometer
+        iniset $CEILOMETER_CONF database metering_connection mongodb://stack:stack@ds060968.mongolab.com:60968/ceilometer
     elif [ "$CEILOMETER_BACKEND" = 'gnocchi' ] ; then
         gnocchi_url=$(gnocchi_service_url)
         iniset $CEILOMETER_CONF DEFAULT meter_dispatchers gnocchi
